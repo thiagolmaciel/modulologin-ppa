@@ -1,37 +1,33 @@
 body{
   margin: 0;
-  background-color: #0a0a0a;
-   }
-  input.input{
+  background-color: #;
+}
+
+input.input{
   border: 0.5px solid black;
   padding: 7px 10px;
   width: 25rem;
   margin: 8px 0;
   border-radius: 5px;
-  background-color: #101010;
 }
 
 input.button{
   padding: 9px;
-  background-color: #088404 ;
+  background-color: #8d65cc;
   color: white;
 }
 
 input.button,input .input, a{
   margin: 8px 0;
 }
-
-
 .container{
   display: flex;
   min-width: 50em;
   min-height: 30em;
-  background-color: #101010 ;
-  color: white;
 }
 
 .left-side{
-  background-color: #088404;
+  background-color: #3b82f6;
   width:50%;
   align-items:center;
   justify-items: center;
@@ -55,11 +51,5 @@ input.button,input .input, a{
 
 
 .warn{
- background-color: #162916;
- color: #a5f0a5;
-}
-
-.right-side a:hover{
-  color: #0bba06;
-  transition: all 0.5s ease-in-out;
+  background-color: #f9f871
 }
