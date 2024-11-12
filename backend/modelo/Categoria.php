@@ -1,19 +1,18 @@
 <?php
 
-class Categoria {
+class Login {
 
-    private $idusuario;
-    private $nome;
+    private $usuario;
+    private $acesso_poder;
     private $email;
     private $senha;
-    private $nivel;
 
     public function __construct() {
         
     }
 
-    function getIdusuario() {
-        return $this->idusuario;
+    function getUsuario() {
+        return $this->usuario;
     }
 
     function getNome() {
@@ -28,12 +27,12 @@ class Categoria {
         return $this->senha;
     }
 
-    function getNivel() {
-        return $this->nivel;
+    function getAcesso_poder() {
+        return $this->acesso_poder;
     }
 
-    function setIdusuario($idusuario) {
-        $this->idusuario = $idusuario;
+    function setUsuario($usuario) {
+        $this->usuario = $usuario;
     }
 
     function setNome($nome) {
@@ -48,8 +47,8 @@ class Categoria {
         $this->senha = $senha;
     }
 
-    function setNivel($nivel) {
-        $this->nivel = $nivel;
+    function setAcesso_poder($acesso_poder) {
+        $this->acesso_poder = $acesso_poder;
     }
 
 
