@@ -27,14 +27,14 @@
                     </span>
                     Mesmo que seja ingressado, se inscreva!
                 </div>
-                <form class="flex flex-col">
-                    <input class="input" type="text" name="nome" placeholder="Prontuário"></input>
+                <form class="flex flex-col" action="login.php" method="post">
+                    <input class="input" type="text" name="usuario" id="usuario" placeholder="Prontuário"></input>
                     <br>                    
-                    <input class="input" type="password" name="idade" placeholder="Senha">
+                    <input class="input" type="password" name="senha" id="senha" placeholder="Senha">
                     <br>
                     <a href="#">Esqueci minha senha?</a> <!-- IMPLEMENTAR ESQUECI MINHA SENHA-->
                     <input class="button" type="submit" value="Login">
-                    <p>Não tem conta? <a href="#" >Se inscreva</a></p>
+                    <p>Não tem conta? <a href="/src/pages/cadastro/cadastro.html" >Se inscreva</a></p>
                 </form>
             </div>
 

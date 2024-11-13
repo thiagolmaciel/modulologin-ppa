@@ -12,12 +12,12 @@ class Conexao
     {
         
 		$this->servidor = "localhost";
-        $this->usuario = "aluno";
-        $this->senha = "alunoif";
-        $this->database = "afj";
+        $this->usuario = "root";
+        $this->senha = "";
+        $this->database = "PPA";
 
 		try
-		{
+		{	
 			$this->conexao = new PDO("mysql:host=$this->servidor;dbname=$this->database", $this->usuario, $this->senha);
 			$this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
