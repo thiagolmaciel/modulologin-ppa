@@ -4,24 +4,16 @@ session_start();
 require_once "../../../backend/controle/Conexao.php";
 require_once '../../../backend/controle/UsuariosDAO.php';
 
-// Start a session to store user data after login
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-// Check if the form is submitted and the required POST variables exist
 if (isset($_POST['usuario']) && isset($_POST['senha'])) {
-    // Get the form data
     $usuario = $_POST['usuario'];
     $senha = $_POST['senha'];
-
-    // Create a new instance of UsuariosDAO
     $usuariosDAO = new UsuariosDAO();
 
-    // Call the logar method and pass the username and password
-    $usuarioEncontrado = $usuariosDAO->logar($usuario, $senha); // Alteração: agora estamos chamando o método com os parâmetros
-
+    $usuarioEncontrado = $usuariosDAO->logar($usuario, $senha); 
     if ($usuarioEncontrado) {
-        // If the user is found, you can set session variables or redirect
-        $_SESSION['usuario_id'] = $usuariosDAO->getID(); // Exemplo de como armazenar o ID do usuário na sessão
-        header("Location: /src/pages/cadastro/cadastro.html"); // Redirect to the desired page
+        $_SESSION['usuario_id'] = $usuario;
+        header("Location: /src/pages/cadastro/cadastro.php"); 
         exit;
     } else {
         //MENSAGEM DE ERRO
@@ -63,13 +55,13 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
                     Mesmo que seja ingressado, se inscreva!
                 </div>
                 <form class="flex flex-col" action="login.php" method="post">
-                    <input class="input" type="text" name="usuario" id="usuario" placeholder="Prontuário"></input>
+                    <input class="input" type="text" name="usuario" id="usuario" placeholder="Prontuário" maxlength="9" required></input>
                     <br>                    
-                    <input class="input" type="password" name="senha" id="senha" placeholder="Senha">
+                    <input class="input" type="password" name="senha" id="senha" placeholder="Senha" maxlength="45" required>
                     <br>
                     <a href="#">Esqueci minha senha?</a> <!-- IMPLEMENTAR ESQUECI MINHA SENHA-->
                     <input class="button" type="submit" value="Login">
-                    <p>Não tem conta? <a href="/src/pages/cadastro/cadastro.html" >Se inscreva</a></p>
+                    <p>Não tem conta? <a href="/src/pages/cadastro/cadastro.php" >Se inscreva</a></p>
                 </form>
             </div>
 

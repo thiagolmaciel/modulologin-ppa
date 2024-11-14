@@ -14,7 +14,7 @@ class Conexao
 		$this->servidor = "localhost";
         $this->usuario = "root";
         $this->senha = "";
-        $this->database = "PPA";
+        $this->database = "ppa_bdd";
 
 		try
 		{	
