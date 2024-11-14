@@ -18,5 +18,5 @@ CREATE TABLE IF NOT EXISTS UsuariosPendentes(
   acesso_poder BOOLEAN NOT NULL
 );
 
-INSERT IGNORE INTO 'Usuarios' (usuario, senha, email, acesso_poder) 
+INSERT IGNORE INTO Usuarios (usuario, senha, email, acesso_poder) 
 VALUES ('BV0000000', 'test', 'test@gmail.com', false);
