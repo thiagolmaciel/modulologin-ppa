@@ -1,0 +1,44 @@
+body{
+  margin: 0;
+  background-color: #0a0a0a;
+  min-height: 100vh;
+}
+
+.header{
+  background-color: #088404 ;
+  width: 100%;
+  color: white;
+  height: 7vh;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+}
+
+nav{
+  height: 93vh;
+  width: 14vw;
+  background-color: rgb(31, 31, 31);
+  justify-items: center;
+  align-items: center;
+  position:sticky;
+  top: 7vh;
+  color: white
+}
+
+nav ul{
+  display: flex;
+  flex-direction: column;
+}
+
+nav ul li:hover{
+  transform: translateX(5px);
+  border-bottom: solid 1px rgb(131, 131, 131);
+  transition: all ease 1s;
+}
+
+.page{
+  margin-top: 5em;
+  height: 300vh;
+  width: 86vw;
+  position: sticky;
+}

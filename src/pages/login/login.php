@@ -11,12 +11,16 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
     $usuariosDAO = new UsuariosDAO();
 
     $usuarioEncontrado = $usuariosDAO->logar($usuario, $senha); 
+
     if ($usuarioEncontrado) {
-        $_SESSION['usuario_id'] = $usuario;
-        header("Location: /src/pages/cadastro/cadastro.php"); 
+        $usuarioEncontrado->iniciarSession();
+        header("Location: /src/pages/painel/painel.php");
         exit;
     } else {
-        //MENSAGEM DE ERRO
+        // Caso o login falhe, desvia para uma página de erro ou limpa as sessões
+        unset($_SESSION['usuario']);
+        unset($_SESSION['senha']);
+        // Aqui você pode adicionar uma mensagem de erro
     }
 } else {
     //mensagem CAMPOS AUSENTES                                     
