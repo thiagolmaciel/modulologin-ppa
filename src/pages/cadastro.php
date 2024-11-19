@@ -1,7 +1,7 @@
 <?php
-require_once "../../../backend/controle/Conexao.php";
-require_once "../../../backend/controle/UsuariosDAO.php";
-require_once "../../../backend/controle/ProntuariosDAO.php";
+require_once "../../backend/controle/Conexao.php";
+require_once "../../backend/controle/UsuariosDAO.php";
+require_once "../../backend/controle/ProntuariosDAO.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST['nome'];
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($senhaconfere) {
                 $usuarioDAO->cadastrar($nome, $telefone, $endereco, $usuario, $senha, $senhaconfirma, $email);
                 $prontuarioDAO->inscrever($usuario);
-                header("Location: /src/pages/login/login.php");
+                header("Location: /src/pages/login.php");
                 exit;
             } else {
                 echo "<script>alert('Senha não confere!');</script>";

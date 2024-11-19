@@ -78,6 +78,6 @@ class UsuariosDAO
             session_start(); // Inicia a sessão, caso ainda não tenha sido iniciada
         }
         session_destroy();
-        header('Location: ../../src/pages/login/login.php');
+        header('Location: ../../src/pages/login.php');
     }
 }

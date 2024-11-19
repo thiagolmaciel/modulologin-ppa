@@ -1,12 +1,12 @@
 <?php
 // Include the necessary files
 session_start();
-require_once '../../../backend/controle/Conexao.php';
-require_once '../../../backend/controle/UsuariosDAO.php';
-require_once '../../../backend/controle/ProntuariosDAO.php';
+require_once '../../backend/controle/Conexao.php';
+require_once '../../backend/controle/UsuariosDAO.php';
+require_once '../../backend/controle/ProntuariosDAO.php';
  
 if(isset($_SESSION['usuario'])){
-    header('Location: /src/pages/painel/painel.php');
+    header('Location: /src/pages/painel.php');
     exit;
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,7 +19,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
 
     if ($usuarioEncontrado) {
             $usuarioEncontrado->iniciarSession();
-            header("Location: /src/pages/painel/painel.php");
+            header("Location: /src/pages/painel.php");
             exit;
         }
 
@@ -69,7 +69,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
                     <br>
                     <a href="#">Esqueci minha senha?</a> <!-- IMPLEMENTAR ESQUECI MINHA SENHA-->
                     <input class="button" type="submit" value="Login" onclick="validar()">
-                    <p>Não tem conta? <a href="/src/pages/cadastro/cadastro.php" >Se inscreva</a></p>
+                    <p>Não tem conta? <a href="/src/pages/cadastro.php" >Se inscreva</a></p>
                 </form>
             </div>
 
