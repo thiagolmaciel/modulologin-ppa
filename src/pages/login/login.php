@@ -1,9 +1,14 @@
 <?php
 // Include the necessary files
 session_start();
-require_once "../../../backend/controle/Conexao.php";
+require_once '../../../backend/controle/Conexao.php';
 require_once '../../../backend/controle/UsuariosDAO.php';
-
+require_once '../../../backend/controle/ProntuariosDAO.php';
+ 
+if(isset($_SESSION['usuario'])){
+    header('Location: /src/pages/painel/painel.php');
+    exit;
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (isset($_POST['usuario']) && isset($_POST['senha'])) {
     $usuario = $_POST['usuario'];
@@ -13,19 +18,18 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
     $usuarioEncontrado = $usuariosDAO->logar($usuario, $senha); 
 
     if ($usuarioEncontrado) {
-        $usuarioEncontrado->iniciarSession();
-        header("Location: /src/pages/painel/painel.php");
-        exit;
+            $usuarioEncontrado->iniciarSession();
+            header("Location: /src/pages/painel/painel.php");
+            exit;
+        }
+
     } else {
-        // Caso o login falhe, desvia para uma página de erro ou limpa as sessões
         unset($_SESSION['usuario']);
         unset($_SESSION['senha']);
-        // Aqui você pode adicionar uma mensagem de erro
+        echo('<script>alert("Senha incorreta ou usuário não encontrado!")</script>');
     }
-} else {
-    //mensagem CAMPOS AUSENTES                                     
 }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -58,13 +62,13 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
                     </span>
                     Mesmo que seja ingressado, se inscreva!
                 </div>
-                <form class="flex flex-col" action="login.php" method="post">
+                <form class="flex flex-col" action="login.php" method="post" name="loginform">
                     <input class="input" type="text" name="usuario" id="usuario" placeholder="Prontuário" maxlength="9" required></input>
                     <br>                    
                     <input class="input" type="password" name="senha" id="senha" placeholder="Senha" maxlength="45" required>
                     <br>
                     <a href="#">Esqueci minha senha?</a> <!-- IMPLEMENTAR ESQUECI MINHA SENHA-->
-                    <input class="button" type="submit" value="Login">
+                    <input class="button" type="submit" value="Login" onclick="validar()">
                     <p>Não tem conta? <a href="/src/pages/cadastro/cadastro.php" >Se inscreva</a></p>
                 </form>
             </div>

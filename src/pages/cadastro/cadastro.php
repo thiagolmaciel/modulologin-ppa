@@ -1,6 +1,7 @@
 <?php
 require_once "../../../backend/controle/Conexao.php";
-require_once "../../../backend/controle/UsuariosPendentesDAO.php";
+require_once "../../../backend/controle/UsuariosDAO.php";
+require_once "../../../backend/controle/ProntuariosDAO.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST['nome'];
@@ -11,21 +12,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senhaconfirma = $_POST['senhaconfirma'];
     $email = $_POST['email'];
 
-    $usuariospendentesDAO = new UsuariosPendentesDAO();
-    $usuarioexiste = $usuariospendentesDAO->usuarioexiste($usuario);
-    $senhaconfere = $usuariospendentesDAO->senhaconfere($senha, $senhaconfirma);
+    $usuarioDAO = new UsuariosDAO();
+    $prontuarioDAO = new ProntuariosDAO();
+    $prontuarioexiste = $prontuarioDAO->prontuarioExiste($usuario);
+    $prontuarioinscrito = $prontuarioDAO->estaInscrito($usuario);
+    echo($usuario);
+    $usuarioexiste = $usuarioDAO->usuarioExiste($usuario);
+    $senhaconfere = $usuarioDAO->senhaDuplaConfere($senha, $senhaconfirma);
 
-    if($usuarioexiste){
-        //MENSAGEM ERRO: USUARIO JA CADASTRADO
+
+    if ($prontuarioexiste) {
+        if (!$prontuarioinscrito && !$usuarioexiste) {
+            if ($senhaconfere) {
+                $usuarioDAO->cadastrar($nome, $telefone, $endereco, $usuario, $senha, $senhaconfirma, $email);
+                $prontuarioDAO->inscrever($usuario);
+                header("Location: /src/pages/login/login.php");
+                exit;
+            } else {
+                echo "<script>alert('Senha não confere!');</script>";
+            }
+        } else {
+            echo "<script>alert('Prontuário não encontrado!');</script>";
+        }
     }
     else{
-      if($senhaconfere){
-        $usuariospendentesDAO->cadastrar($nome, $telefone, $endereco, $usuario, $senha, $senhaconfirma , $email);
-        header("Location: /src/pages/login/login.php");
-        exit;
-      }
+        echo "<script>alert('Prontuário não encontrado!');</script>";
     }
-    
 }
 ?>
 
@@ -44,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="h-screen w-screen flex flex-col justify-center items-center">
 
- <!--<form action="OBJ1", method="post">-->
+    <!--<form action="OBJ1", method="post">-->
     <main>
         <div class="container shadow-xl shadow-black rounded-xl overflow-hidden">
             <div class="left-side flex justify-center items-center">
@@ -70,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <br>
                     <input class="button" type="submit" value="Cadastrar">
                 </form>
+                <a href="../login/login.php">Voltar</a>
             </div>
 
         </div>
