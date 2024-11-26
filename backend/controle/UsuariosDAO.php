@@ -10,7 +10,7 @@ class UsuariosDAO
     private $resultado;
     private $tabela;
 
-    public function __construct()
+    public function __construct ()
     {
         $conn = new Conexao();
         $this->conexao = $conn->getConexao();
