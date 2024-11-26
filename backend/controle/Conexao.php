@@ -12,8 +12,8 @@ class Conexao
     {
         
 		$this->servidor = "localhost";
-        $this->usuario = "root";
-        $this->senha = "";
+        $this->usuario = "aluno";
+        $this->senha = "alunoif";
         $this->database = "ppa_bdd";
 
 		try

@@ -26,13 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($senhaconfere) {
                 $usuarioDAO->cadastrar($nome, $telefone, $endereco, $usuario, $senha, $senhaconfirma, $email);
                 $prontuarioDAO->inscrever($usuario);
-                header("Location: /src/pages/login.php");
+                echo"<script>alert('Sucesso!');</script>";
+                header("Location: login.php");
                 exit;
             } else {
                 echo "<script>alert('Senha não confere!');</script>";
             }
         } else {
-            echo "<script>alert('Prontuário não encontrado!');</script>";
+            echo "<script>alert('Prontuário não encontrado ou conta já criada!');</script>";
         }
     }
     else{
@@ -47,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Login</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/7ea58ad5b7.js" crossorigin="anonymous"></script>
@@ -61,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container shadow-xl shadow-black rounded-xl overflow-hidden">
             <div class="left-side flex justify-center items-center">
                 <div class="content">
-                    <img src="/public/ppalogo.svg" height="250px" width="250px">
+                    <img src="../../public/ppalogo.svg" height="250px" width="250px">
                 </div>
             </div>
             <div class="right-side items-center justify-center">

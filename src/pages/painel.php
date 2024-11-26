@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario'])) {
-  header('Location: /src/pages/login.php');
+  header('Location: login.php');
 } else {
 }
 ?>
@@ -20,7 +20,7 @@ if (!isset($_SESSION['usuario'])) {
       echo '<title>Painel - Usuário</title>';
     }
   ?>
-  <link rel="stylesheet" href="/src/css/painelstyle.css">
+  <link rel="stylesheet" href="../css/painelstyle.css">
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/7ea58ad5b7.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=error" />
@@ -29,10 +29,10 @@ if (!isset($_SESSION['usuario'])) {
 <body class="">
   <header>
     <div class="header py-5 px-10 flex justify-between items-center">
-      <img src="/public/ppalogo.svg" height="50px" width="100px" alt=""></img>
+      <img src="../../public/ppalogo.svg" height="50px" width="100px" alt=""></img>
       <div class="flex flex-row gap-10">
       <p>Olá, <?php echo '<strong>' . $_SESSION['nome'] . '</strong>' ?></p>
-      <p><a href='../../../backend/controle/Logout.php'>Sair</a></p>
+      <p><a href='../../backend/controle/Logout.php'>Sair</a></p>
       </div>
     </div>
   </header>

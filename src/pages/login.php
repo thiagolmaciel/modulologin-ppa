@@ -6,7 +6,7 @@ require_once '../../backend/controle/UsuariosDAO.php';
 require_once '../../backend/controle/ProntuariosDAO.php';
  
 if(isset($_SESSION['usuario'])){
-    header('Location: /src/pages/painel.php');
+    header('Location: ../../src/pages/painel.php');
     exit;
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,7 +19,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
 
     if ($usuarioEncontrado) {
             $usuarioEncontrado->iniciarSession();
-            header("Location: /src/pages/painel.php");
+            header("Location: painel.php");
             exit;
         }
 
@@ -38,7 +38,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Login</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/7ea58ad5b7.js" crossorigin="anonymous"></script>
@@ -52,7 +52,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
         <div class="container shadow-xl shadow-black rounded-xl overflow-hidden">
             <div class="left-side flex justify-center items-center">
                 <div class="content">
-                    <img src="/public/ppalogo.svg" height="250px" width="250px">
+                    <img src="../../public/ppalogo.svg" height="250px" width="250px">
                 </div>
             </div>
             <div class="right-side items-center justify-center">
@@ -69,7 +69,7 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
                     <br>
                     <a href="#">Esqueci minha senha?</a> <!-- IMPLEMENTAR ESQUECI MINHA SENHA-->
                     <input class="button" type="submit" value="Login" onclick="validar()">
-                    <p>Não tem conta? <a href="/src/pages/cadastro.php" >Se inscreva</a></p>
+                    <p>Não tem conta? <a href="cadastro.php" >Se inscreva</a></p>
                 </form>
             </div>
 
