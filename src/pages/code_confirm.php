@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                     <br>
                     <input class="button" type="submit" value="Confirmar" onclick="validar()">
-                    
+                    <!--- Test --->
                 </form>
             </div>
 
