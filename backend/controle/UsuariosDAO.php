@@ -54,11 +54,28 @@ class UsuariosDAO
         };
     }
 
+    function emailExiste($email)
+    {
+        try {
+            $this->sql = 'SELECT 1 FROM ' . $this->tabela . ' WHERE email = :email LIMIT 1';
+            $this->resultado = $this->conexao->prepare($this->sql);
+            $this->resultado->bindParam(':email', $email);
+            $this->resultado->execute();
+            if ($this->resultado->fetch()) {
+                return true;
+            } else {
+                    return false;
+            }
+        } catch (PDOException $e) {
+            error_log("Error checking email: " . $e->getMessage());
+            return false;
+        }
+    }
+
     function cadastrar($nome, $telefone, $endereco, $usuario, $senha, $email)
     {
         $this->sql = 'INSERT INTO Usuarios (nome, telefone, endereco, usuario, senha, email, acesso_poder) VALUES (:nome, :telefone, :endereco, :usuario, :senha, :email, false)';
         $this->resultado = $this->conexao->prepare($this->sql);
-        $this->resultado->bindParam(':usuario', $usuario);
         $this->resultado->bindParam(':nome', $nome);
         $this->resultado->bindParam(':telefone', $telefone);
         $this->resultado->bindParam(':endereco', $endereco);

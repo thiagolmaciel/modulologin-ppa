@@ -6,10 +6,26 @@ require_once '../../backend/controle/ProntuariosDAO.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
-    //email existe no banco de dados? Se sim:, senao imprimir um alert na tela dizendo: Email não encontrado
-    if($email){
+    $usuariosDAO = new UsuariosDAO();
+
+    $emailExiste = $usuariosDAO->emailExiste($email);
+
+    if($emailExiste){
+        $token = rand(10000, 99999);
+        $emailEnviar = new Email();
+        $emailEnviar->setTo($email);
+        $emailEnviar->setSubject("Troca de Senha - PPA");
+        $emailEnviar->setMessage("Seu token para confirmação de email é " . $token);
+        $emailEnviar->setHeaders("From:exemplo@gmail.com . \r\n. Reply-To: ". $email);
+        $_SESSION['token'] = $token;
+        $emailEnviar->mail();
 
     }
+    else{
+        echo "<script>alert('Email não encontrado! " . $emailExiste . "');</script>";
+    }
+
+
 }
 ?>
 
@@ -44,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form class="flex flex-col" action="email_confirm.php" method="post" name="loginform">                  
                     <input class="input" type="email" name="email" id="email" placeholder="Email" maxlength="100" required>
                     <br>
-                    <input class="button" type="submit" value="Confirmar" onclick="validar()">
+                    <input class="button" type="submit" value="Confirmar">
                     
                 </form>
             </div>
