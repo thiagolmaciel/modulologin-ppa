@@ -72,7 +72,7 @@ class UsuariosDAO
         }
     }
 
-    function cadastrar($nome, $telefone, $endereco, $usuario, $senha, $email)
+    function cadastrar($nome, $telefone, $endereco, $usuario, $senha, $senhaconfirma, $email)
     {
         $this->sql = 'INSERT INTO Usuarios (nome, telefone, endereco, usuario, senha, email, acesso_poder) VALUES (:nome, :telefone, :endereco, :usuario, :senha, :email, false)';
         $this->resultado = $this->conexao->prepare($this->sql);
@@ -84,7 +84,7 @@ class UsuariosDAO
         $this->resultado->bindParam(':email', $email);
         if ($this->resultado->execute()) {
             return true;
-        } else {
+        } else {    
             return false;
         }
     }
