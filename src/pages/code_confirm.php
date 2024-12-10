@@ -4,13 +4,7 @@ require_once '../../backend/controle/Conexao.php';
 require_once '../../backend/controle/UsuariosDAO.php';
 require_once '../../backend/controle/ProntuariosDAO.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    //email existe no banco de dados? Se sim:, senao imprimir um alert na tela dizendo: Email não encontrado
-    if($email){
 
-    }
-}
 ?>
 
 <!DOCTYPE html>

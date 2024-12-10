@@ -20,6 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['token'] = $token;
         $emailEnviar->mail();
 
+        header("Location: code_confirm.php");
+        exit; 
+
     }
     else{
         echo "<script>alert('Email não encontrado! " . $emailExiste . "');</script>";
